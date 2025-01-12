@@ -29,12 +29,37 @@
 							<li class="header-top-contact">
 								+1 222 777 6565
 							</li>
+							@if (Route::has('login'))
+							@auth
 							<li class="header-top-contact">
-								<a href="#">sign in</a>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();">Sign out</a>
 							</li>
-							<li class="header-top-contact">
-								<a href="#">register</a>
-							</li>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+
+							@csrf
+
+							</form>
+							@else
+
+									<li class="header-top-contact">
+										<a href="{{ route('login') }}">sign in</a>
+									</li>
+									@if (Route::has('register'))
+
+									<li class="header-top-contact">
+										<a href="{{ route('register') }}">register</a>
+									</li>
+									@endif
+
+							@endauth
+		
+							@endif
+
+
+
+
+							
 						</ul>
 					</div>
 				</li>
