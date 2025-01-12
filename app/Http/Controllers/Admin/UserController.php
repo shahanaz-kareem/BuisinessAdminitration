@@ -82,7 +82,7 @@ class UserController extends Controller
     public function create(): View
 
     {
-
+        
         $roles = Role::where('id', '!=', 1)->pluck('name', 'id')->all();
 
         return view('admin.users.create',compact('roles'));
@@ -129,7 +129,7 @@ class UserController extends Controller
 
         $user = User::create($input);
 
-        $user->assignRole($request->input('roles'));
+        $user->assignRole($request->input('rolename'));
 
     
 

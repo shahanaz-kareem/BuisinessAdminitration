@@ -50,7 +50,7 @@
                         <div class="card-header">
 
 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-
+<input type="hidden" name="user_type" value="2">
 <div class="row">
 
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -108,6 +108,7 @@
             <strong>Role:</strong>
 
             {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+            <input type="hidden" name="rolename" value="{{ implode(',', $roles) }}">
 
         </div>
 
