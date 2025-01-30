@@ -12,11 +12,11 @@
 
         </div>
 
-        <div class="pull-right">
+        <!-- <div class="pull-right">
 
             <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
 
-        </div>
+        </div> -->
 
     </div>
 
@@ -44,9 +44,14 @@
 
 @endif
 <section class="section">
+           
                     <div class="card">
+                        
                         <div class="card-header">
-
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-primary pull-left" id="roleCreatemodal" data-toggle="modal" data-target="#permissionModal">
+       Create new permission
+        </button>
 
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 
@@ -66,23 +71,47 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+       
 
-            <strong>Permission:</strong>
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            Permissions
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped" id="permissiontable">
+                                <thead>
+                                    <tr>
+                                        <th>Sl. No</th>
+                                        <th>Name</th>
+                                        
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $i=1; @endphp
+                                @foreach($permission as $value)
+                                    <tr id="permission-row-{{$value->id}}">
+                                        <td>{{$i++}}</td>
+                                        <td><label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name form-check-input me-1')) }}
 
-            <br/>
+                                                {{ $value->name }}</label></td>
+                                       
+                                        <td>
+                                        <a href="javascript:void(0);" class="deletepermission  @if($value->status == 0) d-none @endif" data-id="{{ $value->id }}" id="trash-{{$value->id}}">
+                                            <span class="fa-fw select-all fas"></span>
+                                        </a>
+                                        
+                                    </td>
+                                        
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-            @foreach($permission as $value)
-
-                <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-
-                {{ $value->name }}</label>
-
-            <br/>
-
-            @endforeach
-
-        </div>
+                </section>
 
     </div>
 
@@ -99,4 +128,31 @@
 
 
 </section></div></div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="permissionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Permission</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="permissionForm" action="">
+            <div class="modal-body">
+                <label for="permission">Enter New Permission</label>
+                <input type="text" name="permission" class="form-control" id="permission" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="launchModalBtn">Save changes</button>
+            </div>
+        </form>
+
+    </div>
+  </div>
+</div>
+@include('admin.roles.js')
 @endsection

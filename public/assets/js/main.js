@@ -48,4 +48,10 @@ if(typeof PerfectScrollbar == 'function') {
 }
 
 // Scroll into active sidebar
-document.querySelector('.sidebar-item.active').scrollIntoView(false)
+document.addEventListener('DOMContentLoaded', function() {
+    let activeSidebarItem = document.querySelector('.sidebar-item.active');
+    if (activeSidebarItem) {
+        activeSidebarItem.scrollIntoView(false);
+    }
+});
+

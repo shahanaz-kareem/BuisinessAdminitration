@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MainViewController;
+use App\Http\Controllers\PermissionController;
+
 
 
 /*
@@ -40,5 +42,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function() {
     Route::resource('users', UserController::class);
 
     Route::resource('products', ProductController::class);
+
+    Route::resource('permission', PermissionController::class);
+    Route::delete('permission/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
+
+
 
 });
