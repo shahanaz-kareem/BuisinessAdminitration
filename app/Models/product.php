@@ -32,7 +32,7 @@ class Product extends Model
 
     protected $fillable = [
 
-        'name', 'detail'
+        'name', 'detail','approval_status',
 
     ];
 
