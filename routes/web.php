@@ -45,7 +45,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function() {
 
     Route::resource('permission', PermissionController::class);
     Route::delete('permission/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
-
+    Route::get('editpermission/{id}', [PermissionController::class, 'show'])->name('permission.edit');
+    Route::patch('upadepermission/{id}', [PermissionController::class, 'update'])->name('permission.update');
 
 
 });

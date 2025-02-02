@@ -5,6 +5,7 @@ $(document).ready(function() {
     });  
     $('.close, .cancel-btn').on('click', function() {
         $('#permissionModal').modal('hide');
+        $('#editPermissionModal').modal('hide');
     });
     let table1 = document.querySelector('#permissiontable');
     let dataTable = new simpleDatatables.DataTable(table1);
@@ -28,6 +29,9 @@ $(document).ready(function() {
                     <td>
                         <a href="javascript:void(0);" class="deletepermission" data-id="${response.id}" id="trash-${response.id}">
                              <span class="fa-fw select-all fas"></span>
+                        </a>
+                        <a href="#" class="editpermission" data-id="${response.id}" id="edit-permission">
+                                            <span class="fa-fw select-all fas"></span>
                         </a>
                     </td>
                 </tr>
@@ -81,6 +85,70 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    $(document).on('click', '.editpermission', function(e) {
+        e.preventDefault();
+        var permissionId = $(this).data('id');
+        
+            $.ajax({
+                url: '{{ route('permission.edit', '') }}/' + permissionId, 
+                type: 'GET',
+                success: function(response) {
+                    if(response.success) {
+                        var permissionData = response.data;
+
+                        $('#editPermissionModal #permissionName').val(permissionData.name); 
+                        $('#editPermissionModal #id').val(permissionData.id); 
+                        $('#editPermissionModal').modal('show');
+                        
+                        console.log(permissionData);
+                    } else {
+                        Swal.fire('Error!', 'Failed to retrieve permission data.', 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire('Error!', 'An error occurred while retrieving the permission: ' + error, 'error');
+                }
+            });
+    });
+
+
+    $(document).on('submit', '#permissioneditForm', function(e) {
+        e.preventDefault(); 
+
+        var permissionId = $('#id').val(); 
+        var permissionName = $('#permissionName').val();  
+
+ 
+     
+
+        $.ajax({
+            url: '{{ route('permission.update', '') }}/' + permissionId,  
+            type: 'PATCH',
+            data: {
+                _token: '{{ csrf_token() }}', 
+                permission: permissionName,  
+            },
+            success: function(response) {
+                if (response.success) {
+                    console.log(permissionName);
+                    Swal.fire('Updated!', 'The permission has been updated.', 'success');
+                    $('#editPermissionModal').modal('hide');
+                    $('#permission-row-' + permissionId).find('.permission-name').text(permissionName);
+
+                } else {
+                    Swal.fire('Error!', 'Failed to update the permission.', 'error');
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire('Error!', 'An error occurred while updating the permission: ' + error, 'error');
+            }
+        });
+    });
+
+
 });
+
 
 </script>

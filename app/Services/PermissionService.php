@@ -33,6 +33,35 @@ class PermissionService
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+    public function show($id)
+    {
+        $permission = Permission::find($id);
+    
+        if ($permission) {
+            return response()->json([
+                'success' => true,
+                'data' => $permission
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission not found'
+            ], 404);
+        }
+    }
+    public function update($request, $id)
+    {
+        $permission = Permission::find($id);
+
+        if (!$permission) {
+            return response()->json(['success' => false, 'message' => 'Permission not found'], 404);
+        }
+
+        $permission->name = $request->input('permission');
+        $permission->save();
+
+        return response()->json(['success' => true, 'message' => 'Permission updated successfully']);
+    }
 
 
 }

@@ -23,4 +23,10 @@ class PermissionController extends Controller
     public function destroy($id){
         return $this->Permissionservices->destroy($id);
     }
+    public function show($id){
+        return $this->Permissionservices->show($id);
+    }
+    public function update(Request $request, $id){
+        return $this->Permissionservices->update($request, $id);
+    }
 }

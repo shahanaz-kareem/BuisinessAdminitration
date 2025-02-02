@@ -93,7 +93,7 @@
                                 @foreach($permission as $value)
                                     <tr id="permission-row-{{$value->id}}">
                                         <td>{{$i++}}</td>
-                                        <td><label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name form-check-input me-1')) }}
+                                        <td><label class="permission-name">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name form-check-input me-1 permission-name')) }}
 
                                                 {{ $value->name }}</label></td>
                                        
@@ -101,6 +101,10 @@
                                         <a href="javascript:void(0);" class="deletepermission  @if($value->status == 0) d-none @endif" data-id="{{ $value->id }}" id="trash-{{$value->id}}">
                                             <span class="fa-fw select-all fas"></span>
                                         </a>
+                                        <a href="#" class="editpermission @if($value->status == 0) d-none @endif" data-id="{{ $value->id }}" id="edit-permission">
+                                            <span class="fa-fw select-all fas"></span>
+                                        </a>
+
                                         
                                     </td>
                                         
@@ -130,7 +134,7 @@
 </section></div></div>
 
 
-<!-- Modal -->
+<!-- create Modal -->
 <div class="modal fade" id="permissionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -148,6 +152,33 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="launchModalBtn">Save changes</button>
+            </div>
+        </form>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- edit Modal -->
+<div class="modal fade" id="editPermissionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Permission</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="permissioneditForm" action="">
+            <div class="modal-body">
+                <label for="permission">Edit Permission</label>
+                <input type="text" name="permission" class="form-control permission-name" id="permissionName" value="">
+                <input type="hidden" name="id" class="form-control" id="id" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="launchModalBtn">Update</button>
             </div>
         </form>
 
