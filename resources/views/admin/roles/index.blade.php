@@ -39,7 +39,13 @@
 @endif
 
 
-
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                       
+                        </div>
+                        <div class="card-body">
 <table class="table table-bordered">
 
   <tr>
@@ -88,7 +94,11 @@
 
 </table>
 
+</div>
+                    </div>
 
+                </section>
+                </div>
 
 {!! $roles->render() !!}
 

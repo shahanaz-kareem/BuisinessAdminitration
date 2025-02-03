@@ -8,7 +8,7 @@
 
             <div class="pull-left">
 
-                <h2>Products</h2>
+                <h2>Products Management</h2>
 
             </div>
 
@@ -45,7 +45,7 @@
                        
                         </div>
                         <div class="card-body">
-    <table class="table table-bordered" id="productTable">
+    <table class="table table-striped" id="productTable">
 
         <tr>
 
@@ -120,13 +120,16 @@
                     @can('product-approval')
                     <td>
                    
-                        <button  class="btn btn-success" data-status="approved" data-product="{{$product->id}}" id="approveButton">
+                    @if($product->approval_status == 'pending')
+                        <button  class="btn btn-success approveButton{{$product->id}}" data-status="approved" data-product="{{$product->id}}" id="approveButton">
                             Approve <span class="fa-fw select-all fas"></span>
                         </button>
-                        <button class="btn btn-danger" data-status="rejected"  data-product="{{$product->id}}" id="rejectButton">
+                        <button class="btn btn-danger rejectButton{{$product->id}}" data-status="rejected"  data-product="{{$product->id}}" id="rejectButton">
                             Reject <span class="fa-fw select-all fas"></span>
                         </button>
-                 
+                    @else
+                        <p>Action not allowed</p>
+                    @endif
 
                     
                        

@@ -52,6 +52,7 @@
 
         @method('PUT')
 
+        <input type="hidden" name="approval_status" value="pending" class="form-control" placeholder="Name">
 
 
          <div class="row">
@@ -67,7 +68,17 @@
 		        </div>
 
 		    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
 
+<div class="form-group">
+
+    <strong>Price:</strong>
+
+    <input type="number" class="form-control"  name="price" placeholder="price"></input>
+
+</div>
+
+</div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 
 		        <div class="form-group">
@@ -94,6 +105,5 @@
 
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 
 @endsection

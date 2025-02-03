@@ -11,20 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-
-            $table->id();
-
-            $table->string('name');
-
-            $table->text('detail');
-
-            $table->timestamps();
-            $table->softDeletes();
-
+        Schema::table('products', function (Blueprint $table) {
+            $table->integer('price')->default(0);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
-
     }
 
     /**
@@ -32,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
     }
 };

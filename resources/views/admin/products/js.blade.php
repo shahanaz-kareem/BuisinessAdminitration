@@ -33,9 +33,17 @@
                 type: 'POST',
                 data: formData,
                 success: function(response) {
-                    Swal.fire(
-                        'Success!',
-                    );
+                    // Show success alert
+                     Swal.fire('Success!', 'Product has been ' + (status === 'approved' ? 'approved' : 'rejected'), 'success');
+
+                    $('.approveButton' + productId).prop('disabled', true).text(status === 'approved' ? 'Approved' : 'Rejected');
+                    $('.rejectButton' + productId).prop('disabled', true).text(status === 'rejected' ? 'Rejected' : 'Approved');
+
+                    if (status === 'approved') {
+                        $('.rejectButton' + productId).hide(); 
+                    } else {
+                        $('.approveButton' + productId).hide(); 
+                    }
                 },
                 error: function(xhr, status, error) {
                     Swal.fire(
