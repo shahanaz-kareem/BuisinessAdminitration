@@ -20,7 +20,26 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/simple-datatables/style.css')}}">
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/all.min.css')}}">
-    
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
+<!-- filepond validation -->
+<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+
+<!-- image editor -->
+<script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-filter/dist/filepond-plugin-image-filter.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+
+<!-- toastify -->
+<script src="assets/vendors/toastify/toastify.js"></script>
+
+<!-- filepond -->
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 </head>
 
 <body>

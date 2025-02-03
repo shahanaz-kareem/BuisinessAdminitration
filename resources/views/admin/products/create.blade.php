@@ -46,7 +46,7 @@
 
 
 
-    <form action="{{ route('products.store') }}" method="POST">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
 
     	@csrf
 
@@ -89,7 +89,19 @@
 
 		    </div>
 
-
+            <div class="col-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Upload Files</h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                          
+                            <input type="file" class="multiple-files-filepond " name="image_name[]" multiple>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
 		            <button type="submit" class="btn btn-primary">Submit</button>
@@ -104,5 +116,5 @@
 
 
 
-
+@include('admin.products.js')
 @endsection

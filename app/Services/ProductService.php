@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Models\Product;
+use App\Models\Productimage;
+
 
 class ProductService
 {
@@ -20,29 +22,33 @@ class ProductService
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
-
-    public function store($request)
+    public function store( $request)
     {
-
-        request()->validate([
-
-            'name' => 'required',
-
-            'detail' => 'required',
-
-        ]);
-
+       
+        $data = $request->only('name', 'detail', 'price', 'user_id');
+        
+        
+        $product = Product::create($data);
     
-
-        Product::create($request->all());
-
+     dd($request->hasFile('image_name'));
+        if ($request->hasFile('image_name')) {
+            foreach ($request->file('image_name') as $file) {
+              
+                $path = $file->store('uploads/product_images', 'public');
     
-
+              
+                Productimage::create([
+                    'product_id' => $product->id,
+                    'image_name' => $path,
+                ]);
+            }
+        }
+    
+       
         return redirect()->route('products.index')
-
-                        ->with('success','Product created successfully.');
-
+                         ->with('success', 'Product created successfully.');
     }
+    
 
     public function update($request, $product)
     {
