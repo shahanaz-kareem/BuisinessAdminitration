@@ -4,9 +4,10 @@ namespace App\Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
 use App\Models\Product;
 use App\Models\Productimage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 
 class ProductService
@@ -22,31 +23,45 @@ class ProductService
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
-    public function store( $request)
+    public function store($request)
     {
-       
-        $data = $request->only('name', 'detail', 'price', 'user_id');
-        
-        
-        $product = Product::create($data);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'detail' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'user_id' => 'required|exists:users,id',
+            'image_name.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
     
-     dd($request->hasFile('image_name'));
-        if ($request->hasFile('image_name')) {
-            foreach ($request->file('image_name') as $file) {
-              
-                $path = $file->store('uploads/product_images', 'public');
-    
-              
-                Productimage::create([
-                    'product_id' => $product->id,
-                    'image_name' => $path,
-                ]);
-            }
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ], 422);
         }
     
-       
+        $data = $request->only('name', 'detail', 'price', 'user_id','image_name');
+        $product = Product::create($data);
+        if ($request->hasFile('image_name')) {
+                $file = $request->file('image_name');
+                $path = $file->store('uploads/product_images', 'public');
+           
+                $fileName = basename($path);
+                Productimage::create([
+                    'product_id' => $product->id,
+                    'image_name' => $fileName,
+                ]);
+           
+        }
+    
+        if ($request->ajax()) {
+            return response()->json([
+                'message' => 'Product created successfully.',
+                'product_id' => $product->id,
+            ], 201);
+        }
+    
         return redirect()->route('products.index')
-                         ->with('success', 'Product created successfully.');
+            ->with('success', 'Product created successfully.');
     }
     
 
@@ -78,6 +93,19 @@ class ProductService
         $approve->save();
 
         return response()->json(['success' => true, 'message' => 'Success']);
+    }
+    
+    public function showProductdetails()
+    {
+        return view('user.product.detail');
+    }
+
+    public function edit($product){
+
+        $product->with('images')->find($product->id);
+      
+        return view('admin.products.edit',compact('product'));
+
     }
 
 }

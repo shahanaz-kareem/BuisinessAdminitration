@@ -102,14 +102,11 @@ class ProductController extends Controller
 
      */
 
-    public function store(Request $request): RedirectResponse
-
-    {
-        return $this->ProductServices->store($request);
-
-
-    }
-
+     public function store(Request $request)
+     {
+         return $this->ProductServices->store($request);
+     }
+     
     
 
     /**
@@ -149,9 +146,9 @@ class ProductController extends Controller
     public function edit(Product $product): View
 
     {
+        return $this->ProductServices->edit($product);
 
-        return view('admin.products.edit',compact('product'));
-
+      
     }
 
     
@@ -213,6 +210,15 @@ class ProductController extends Controller
 
       
         return $this->ProductServices->approve($request);
+
+
+    }
+
+    public function showProductdetails()
+    {
+
+      
+        return $this->ProductServices->showProductdetails();
 
 
     }

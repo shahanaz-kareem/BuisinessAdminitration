@@ -25,4 +25,22 @@
 		     
         <!--Custom JS-->
         <script src="{{asset('user_assets/assets/js/custom.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                // Open sidebar when "My Account" link is clicked
+                $('#open-sidebar').click(function(e) {
+                    e.preventDefault(); // Prevent default link behavior
+                    $('#sidebar').addClass('open'); // Add class to show the sidebar
+                });
+
+                // Close sidebar when the close button is clicked
+                $('#close-btn').click(function() {
+                    $('#sidebar').removeClass('open'); // Remove the class to hide the sidebar
+                });
+            });
+
+        </script>
         

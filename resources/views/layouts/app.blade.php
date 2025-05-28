@@ -34,8 +34,10 @@
 		<link rel="stylesheet" href="{{asset('user_assets/assets/css/slick-theme.css')}}">
 		
         <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
+
         <link rel="stylesheet" href="{{asset('user_assets/assets/css/bootstrap.min.css')}}">
-		
+
 		<!-- bootsnav -->
 		<link rel="stylesheet" href="{{asset('user_assets/assets/css/bootsnav.css')}}" >	
         
@@ -53,7 +55,8 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-
+        <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+       
     </head>
 	
 <body>
@@ -63,7 +66,28 @@
     @include('layouts.user.footer')
           
     @include('layouts.user.scripts')
+    @auth
+			<div id="sidebar" class="sidebar-overlay">
+				<div class="sidebar-content">
+					<span class="close-btn" id="close-btn">&times;</span>
+					
+						<img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{Auth::user()->name}}</h5>
+                            <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">A fourth item</li>
+                            <li class="list-group-item">And a fifth one</li>
+                            </ul>
+						</div>
+						
 
+
+				</div>
+			</div>
+			@endauth
 </body>
 
 </html>

@@ -82,6 +82,7 @@
 
 {!! $data->render() !!}
 
+@include('admin.users.js')
 
 
 

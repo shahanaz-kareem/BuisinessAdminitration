@@ -29,7 +29,7 @@ use App\Http\Controllers\PermissionController;
 Auth::routes();
 
 Route::get('/', [MainViewController::class, 'index'])->name('/');
- 
+Route::get('product-detail', [ProductController::class, 'showProductdetails'])->name('product.detail');
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 

@@ -28,15 +28,6 @@
 
 
 
-    @if ($message = Session::get('success'))
-
-        <div class="alert alert-success">
-
-            <p>{{ $message }}</p>
-
-        </div>
-
-    @endif
 
     <div class="col-xs-12 col-sm-12 col-md-12">
     <section class="section">
@@ -75,7 +66,7 @@
 
                     <td>
 
-                        <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                        <form action="{{ route('products.destroy',$product->id) }}" method="POST" class="delete-product-form">
 
                             <a class="" href="{{ route('products.show',$product->id) }}"><span class="fa-fw select-all fas"></span></a>
 
@@ -93,7 +84,7 @@
 
                             @can('product-delete')
 
-                            <button type="submit" class=""><span class="fa-fw select-all fas"></span></button>
+                            <button type="submit" class="product-delete-button"><span class="fa-fw select-all fas"></span></button>
 
                             @endcan
 
@@ -146,9 +137,9 @@
 
                 </section>
                 </div>
-    {!! $products->links() !!}
 
 
 
-@include('admin.products.js')
+
+@include('admin.js.product-index')
 @endsection

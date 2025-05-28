@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
 
-  
+use App\Models\Productimage;
+
 
 class Product extends Model
 
@@ -35,5 +36,10 @@ class Product extends Model
         'name', 'detail','approval_status','user_id','price'
 
     ];
+    public function images()
+    {
+        return $this->hasMany(Productimage::class, 'product_id', 'id');
+    }
+    
 
 }

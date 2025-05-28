@@ -1,120 +1,63 @@
 @extends('layouts.adminmaster')
 
 @section('content')  
-
-    <div class="row">
-
-        <div class="col-lg-12 margin-tb">
-
-            <div class="pull-left">
-
-                <h2>Add New Product</h2>
-
-            </div>
-
-            <div class="pull-right">
-
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
-
-            </div>
-
-        </div>
-
+<div class="row mb-4">
+    <div class="col-lg-6">
+        <h2>Add New Product</h2>
     </div>
-
-
-
-    @if ($errors->any())
-
-        <div class="alert alert-danger">
-
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-            <ul>
-
-                @foreach ($errors->all() as $error)
-
-                    <li>{{ $error }}</li>
-
-                @endforeach
-
-            </ul>
-
-        </div>
-
-    @endif
-
-
-
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
-
-    	@csrf
-
-        <input type="hidden" name="user_id" value="{{Auth::user()->id}}" class="form-control" placeholder="Name">
-
-
-         <div class="row">
-
-		    <div class="col-xs-12 col-sm-12 col-md-12">
-
-		        <div class="form-group">
-
-		            <strong>Name:</strong>
-
-		            <input type="text" name="name" class="form-control" placeholder="Name">
-
-		        </div>
-
-		    </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-<div class="form-group">
-
-    <strong>Price:</strong>
-
-    <input type="number" class="form-control"  name="price" placeholder="price"></input>
-
+    <div class="col-lg-6 text-end">
+        <a class="btn btn-primary" href="{{ route('products.index') }}">Back</a>
+    </div>
 </div>
 
-</div>
-		    <div class="col-xs-12 col-sm-12 col-md-12">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.
+        <ul class="mb-0 mt-2">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-		        <div class="form-group">
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <form id="productForm" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-		            <strong>Detail:</strong>
-
-		            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
-
-		        </div>
-
-		    </div>
-
-            <div class="col-12 col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">Upload Files</h5>
+                <div class="row">
+                    <!-- Name -->
+                    <div class="col-md-12 mb-3">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Product Name">
                     </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                          
-                            <input type="file" class="multiple-files-filepond " name="image_name[]" multiple>
-                        </div>
+
+                    <!-- Price -->
+                    <div class="col-md-12 mb-3">
+                        <input type="number" name="price" id="price" class="form-control" placeholder="Price">
+                    </div>
+
+                    <!-- Detail -->
+                    <div class="col-md-12 mb-3">
+                        <textarea name="detail" class="form-control" rows="5" placeholder="Product Details"></textarea>
+                    </div>
+
+                    <!-- Cover Image -->
+                    <div class="col-md-12 mb-4">
+                        <input type="file" name="image_name" id="image_name" class="form-control">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary" id="product-save">Submit</button>
                     </div>
                 </div>
-            </div>
-		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            </form>
+        </div>
+    </div>
+</section>
 
-		            <button type="submit" class="btn btn-primary">Submit</button>
-
-		    </div>
-
-		</div>
-
-
-
-    </form>
-
-
-
-@include('admin.products.js')
+@include('admin.js.product-create')
 @endsection
