@@ -26,4 +26,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_TARGET_DIR }}
-        local-dir: .C:\Users\shaha\OneDrive\Documents\blacksalt\businessAdmin
+        local-dir: 
