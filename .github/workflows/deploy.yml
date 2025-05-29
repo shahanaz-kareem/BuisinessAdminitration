@@ -29,4 +29,4 @@ jobs:
           username: if0_39107441
           password: VipZBKNtfixV
           server-dir: /htdocs/
-          local-dir: ./public
+          local-dir: ./
