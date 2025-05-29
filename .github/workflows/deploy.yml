@@ -3,7 +3,7 @@ name: Deploy to InfinityFree
 on:
   push:
     branches:
-      - Login_setup  # match your push branch
+      - Login_setup  # Replace with your actual branch name
 
 jobs:
   ftp-deploy:
@@ -12,6 +12,41 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug secrets presence (check if secrets exist)
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "❌ FTP_SERVER secret is NOT set"
+            exit 1
+          else
+            echo "✅ FTP_SERVER secret is set"
+          fi
+
+          if [ -z "$FTP_USERNAME" ]; then
+            echo "❌ FTP_USERNAME secret is NOT set"
+            exit 1
+          else
+            echo "✅ FTP_USERNAME secret is set"
+          fi
+
+          if [ -z "$FTP_PASSWORD" ]; then
+            echo "❌ FTP_PASSWORD secret is NOT set"
+            exit 1
+          else
+            echo "✅ FTP_PASSWORD secret is set"
+          fi
+
+          if [ -z "$FTP_TARGET_DIR" ]; then
+            echo "❌ FTP_TARGET_DIR secret is NOT set"
+            exit 1
+          else
+            echo "✅ FTP_TARGET_DIR secret is set"
+          fi
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
+
       - name: Upload to InfinityFree via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -19,4 +54,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_TARGET_DIR }}
-          local-dir: .  # or dist/ if using a build tool
+          local-dir: .
