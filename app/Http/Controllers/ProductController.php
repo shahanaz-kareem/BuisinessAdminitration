@@ -6,13 +6,15 @@ namespace App\Http\Controllers;
 
     
 
-use App\Models\Product;
 
 use Illuminate\Http\Request;
 
 use Illuminate\View\View;
 
 use Illuminate\Http\RedirectResponse;
+
+use App\Services\ProductService;
+use App\Models\Product;
 
     
 
@@ -29,8 +31,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
 
      */
-
-    function __construct()
+    protected $ProductServices;
+    function __construct(ProductService $ProductServices)
 
     {
 
@@ -42,7 +44,10 @@ class ProductController extends Controller
 
          $this->middleware('permission:product-delete', ['only' => ['destroy']]);
 
+         $this->ProductServices = $ProductServices;
+
     }
+  
 
     /**
 
@@ -58,11 +63,8 @@ class ProductController extends Controller
 
     {
 
-        $products = Product::latest()->paginate(5);
-
-        return view('admin.products.index',compact('products'))
-
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return $this->ProductServices->index();
+      
 
     }
 
@@ -100,30 +102,11 @@ class ProductController extends Controller
 
      */
 
-    public function store(Request $request): RedirectResponse
-
-    {
-
-        request()->validate([
-
-            'name' => 'required',
-
-            'detail' => 'required',
-
-        ]);
-
-    
-
-        Product::create($request->all());
-
-    
-
-        return redirect()->route('products.index')
-
-                        ->with('success','Product created successfully.');
-
-    }
-
+     public function store(Request $request)
+     {
+         return $this->ProductServices->store($request);
+     }
+     
     
 
     /**
@@ -163,9 +146,9 @@ class ProductController extends Controller
     public function edit(Product $product): View
 
     {
+        return $this->ProductServices->edit($product);
 
-        return view('admin.products.edit',compact('product'));
-
+      
     }
 
     
@@ -184,27 +167,13 @@ class ProductController extends Controller
 
      */
 
-    public function update(Request $request, Product $product): RedirectResponse
+    public function update(Request $request,Product $product): RedirectResponse
 
     {
 
-         request()->validate([
+        return $this->ProductServices->update($request, $product);
 
-            'name' => 'required',
-
-            'detail' => 'required',
-
-        ]);
-
-    
-
-        $product->update($request->all());
-
-    
-
-        return redirect()->route('products.index')
-
-                        ->with('success','Product updated successfully');
+       
 
     }
 
@@ -236,4 +205,21 @@ class ProductController extends Controller
 
     }
 
+    public function approve(Request $request)
+    {
+
+      
+        return $this->ProductServices->approve($request);
+
+
+    }
+
+    public function showProductdetails()
+    {
+
+      
+        return $this->ProductServices->showProductdetails();
+
+
+    }
 }

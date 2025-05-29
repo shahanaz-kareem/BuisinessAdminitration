@@ -69,3 +69,28 @@
 		<!--header-top end -->
 
 		<!-- top-area Start -->
+		 	<div class="container">
+				<div class="footer-menu">
+		           	<div class="row">
+			           	<div class="col-sm-3">
+			           		 <div class="navbar-header">
+				                <a class="navbar-brand" href="{{route('/')}}">list<span>race</span></a>
+				            </div><!--/.navbar-header-->
+			           	</div>
+			           	<div class="col-sm-9">
+			           		<ul class="footer-menu-item">
+			                    <li class="scroll"><a href="#works">how it works</a></li>
+			                    <li class="scroll"><a href="#explore">explore</a></li>
+			                    <li class="scroll"><a href="#reviews">review</a></li>
+			                    <li class="scroll"><a href="#blog">blog</a></li>
+			                    <li class="scroll"><a href="#contact">contact</a></li>
+								@auth
+								<li class="scroll"><a href="#contact" id="open-sidebar">My Account</a></li>
+								@endauth
+			                </ul><!--/.nav -->
+			           	</div>
+		           </div>
+				</div>
+				
+			</div><!--/.container-->
+

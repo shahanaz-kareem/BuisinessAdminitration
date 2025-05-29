@@ -8,7 +8,7 @@
 
             <div class="pull-left">
 
-                <h2>Products</h2>
+                <h2>Products Management</h2>
 
             </div>
 
@@ -28,19 +28,15 @@
 
 
 
-    @if ($message = Session::get('success'))
 
-        <div class="alert alert-success">
-
-            <p>{{ $message }}</p>
-
-        </div>
-
-    @endif
-
-
-
-    <table class="table table-bordered">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+    <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                       
+                        </div>
+                        <div class="card-body">
+    <table class="table table-striped" id="productTable">
 
         <tr>
 
@@ -52,58 +48,98 @@
 
             <th width="280px">Action</th>
 
+            <th width="280px">Status</th>
+            @can('product-approval')
+            <th width="280px">Approval action</th>
+            @endcan
         </tr>
 
 	    @foreach ($products as $product)
 
-	    <tr>
+                <tr>
 
-	        <td>{{ ++$i }}</td>
+                    <td>{{ ++$i }}</td>
 
-	        <td>{{ $product->name }}</td>
+                    <td>{{ $product->name }}</td>
 
-	        <td>{{ $product->detail }}</td>
+                    <td>{{ $product->detail }}</td>
 
-	        <td>
+                    <td>
 
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                        <form action="{{ route('products.destroy',$product->id) }}" method="POST" class="delete-product-form">
 
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+                            <a class="" href="{{ route('products.show',$product->id) }}"><span class="fa-fw select-all fas"></span></a>
 
-                    @can('product-edit')
+                            @can('product-edit')
 
-                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                            <a class="" href="{{ route('products.edit',$product->id) }}"><span class="fa-fw select-all fas"></span></a>
 
+                            @endcan
+
+
+
+                            @csrf
+
+                            @method('DELETE')
+
+                            @can('product-delete')
+
+                            <button type="submit" class="product-delete-button"><span class="fa-fw select-all fas"></span></button>
+
+                            @endcan
+
+                        </form>
+
+                    </td>
+                
+                    <td>
+                        @switch($product->approval_status)
+                            @case('approved')
+                                <span class="badge bg-success">Approved</span>
+                                @break
+
+                            @case('pending')
+                                <span class="badge bg-warning">Pending</span>
+                                @break
+
+                            @case('rejected')
+                                <span class="badge bg-danger">Rejected</span>
+                        @endswitch
+                    </td>
+
+                
+                    @can('product-approval')
+                    <td>
+                   
+                    @if($product->approval_status == 'pending')
+                        <button  class="btn btn-success approveButton{{$product->id}}" data-status="approved" data-product="{{$product->id}}" id="approveButton">
+                            Approve <span class="fa-fw select-all fas"></span>
+                        </button>
+                        <button class="btn btn-danger rejectButton{{$product->id}}" data-status="rejected"  data-product="{{$product->id}}" id="rejectButton">
+                            Reject <span class="fa-fw select-all fas"></span>
+                        </button>
+                    @else
+                        <p>Action not allowed</p>
+                    @endif
+
+                    
+                       
+                    </td>
                     @endcan
+                </tr>
+
+                @endforeach
+
+            </table>
+
+        </div>
+                    </div>
+
+                </section>
+                </div>
 
 
 
-                    @csrf
 
-                    @method('DELETE')
-
-                    @can('product-delete')
-
-                    <button type="submit" class="btn btn-danger">Delete</button>
-
-                    @endcan
-
-                </form>
-
-	        </td>
-
-	    </tr>
-
-	    @endforeach
-
-    </table>
-
-
-
-    {!! $products->links() !!}
-
-
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
-
+@include('admin.js.product-index')
 @endsection

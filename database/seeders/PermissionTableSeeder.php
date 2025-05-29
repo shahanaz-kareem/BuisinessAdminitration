@@ -42,6 +42,8 @@ class PermissionTableSeeder extends Seeder
 
            'product-create',
 
+           'product-approval',
+
            'product-edit',
 
            'product-delete',
@@ -59,7 +61,10 @@ class PermissionTableSeeder extends Seeder
 
         foreach ($permissions as $permission) {
 
-             Permission::create(['name' => $permission]);
+             Permission::create([
+                'name' => $permission,
+                'status' => 0,
+            ]);
 
         }
 

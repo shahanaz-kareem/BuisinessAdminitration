@@ -186,3 +186,193 @@
 #submit:active{
     opacity: 0.8;
 }
+
+
+/* product details */
+
+
+.details-snippet1 {
+    color: #585656;
+}
+
+/* Main text uses this styling and color */
+.details-snippet1 .theme-text {
+    color: purple;
+    font-weight: bold;
+}
+
+.details-snippet1 .mini-preview img {
+    border: 1px solid #585656;
+    border: 1px solid purple;
+    margin-bottom: 8px;
+}
+
+.details-snippet1 .title {
+    color: #464343;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.details-snippet1 .price {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.details-snippet1 .original-price {
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.brief-description {
+    /* color: #585656; */
+    color: #464343;
+}
+
+
+.select-colors .color {
+    display: inline-block;
+    border: 1px solid grey;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background-color: black;
+}
+
+.select-colors .color.red {
+    background-color: red;
+}
+
+.select-colors .color.silver {
+    background-color: silver;
+}
+
+.select-colors .color.black {
+    background-color: black;
+}
+
+
+
+.addBtn {
+    background-color: purple;
+    color: white;
+    text-transform: uppercase;
+}
+
+.addBtn:hover {
+    background-color: #500150;
+    color: white;
+}
+
+
+.related-heading {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* color: #464343; */
+}
+
+.details-snippet1 .related-title {
+    color: #464343;
+    font-weight: bold;
+}
+
+.details-snippet1 .related-price {
+    color: #464343;
+    font-weight: bold;
+}
+
+
+
+.additional-details .nav-link {
+    border: none;
+    color: #464343;
+}
+
+.additional-details .nav-link.active {
+    background-color: white;
+    color: #464343;
+    border: none;
+    border-bottom: 4px solid purple;
+}
+.d-flex{
+    display:flex;
+}
+
+
+/* my account */
+/* Style for the sidebar overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #f5f5f5; /* Dark background */
+    z-index: 1000; /* Ensure the sidebar is on top */
+    transition: 0.3s ease-in-out;
+}
+
+.sidebar-content {
+    color: black;
+    padding: 20px;
+    /* background-color: #333; */
+    width: 250px;
+    height: 100%;
+    position: relative;
+    padding-top: 60px;
+}
+
+#close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Link styles */
+.scroll a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* When the sidebar is open */
+.sidebar-overlay.open {
+    width: 250px;
+}
+
+
+
+  .card-img-top {
+    width: 60%;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display:block;
+  }
+  .card {
+    padding: 1.5em 0.5em 0.5em;
+    text-align: center;
+    border-radius: 2em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .btn-primary {
+    border-radius: 2em;
+    padding: 0.5em 1.5em;
+  }
+  
+  .product-delete-button{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: red;
+}

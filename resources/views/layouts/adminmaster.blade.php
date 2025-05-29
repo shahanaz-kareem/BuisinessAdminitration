@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.svg')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('assets/vendors/simple-datatables/style.css')}}">
+  
+    <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/toastify/toastify.css')}}">
+
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+
 </head>
 
 <body>
@@ -32,9 +38,10 @@
            
         </div>
     </div>
-   
+    
     @include('layouts.admin.footer')
-   
+   <!-- SweetAlert2 CDN -->
+
 </body>
 
 </html>
