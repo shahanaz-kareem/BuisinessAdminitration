@@ -1,29 +1,32 @@
-name: Deploy to InfinityFree via FTP
+name: Deploy to InfinityFree
 
 on:
   push:
     branches:
-      - Login_setup
+      - Login_setup  # Your target branch
 
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Build project (optional)
-      run: |
-        npm install
-        npm run build
-      # Remove or modify this step if not using a build tool
+      - name: Debug secrets (sanitized output)
+        run: |
+          echo "Server: ${FTP_SERVER:+✅ SET}"
+          echo "Username: ${FTP_USERNAME:+✅ SET}"
+          echo "Target Dir: ${FTP_TARGET_DIR:+✅ SET}"
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
 
-    - name: Upload to InfinityFree via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ${{ secrets.FTP_TARGET_DIR }}
-        local-dir: ./dist  # Change to `.` if static files are in the root
+      - name: Upload to InfinityFree via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftpupload.net
+          username: if0_39107441
+          password: VipZBKNtfixV
+          server-dir: /htdocs/
+          local-dir: .
