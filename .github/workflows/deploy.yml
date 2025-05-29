@@ -1,9 +1,9 @@
-name: Deploy Laravel to InfinityFree
+name: Deploy to InfinityFree
 
 on:
   push:
     branches:
-      - Login_setup  # your branch name here
+      - Login_setup
 
 jobs:
   ftp-deploy:
@@ -13,30 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Optional: If you need to build assets (like npm run prod)
-      #- name: Install Node.js and dependencies
-      #  uses: actions/setup-node@v3
-      #  with:
-      #    node-version: '16'
+      - name: Debug secrets presence
+        run: |
+          echo "FTP_SERVER = $FTP_SERVER"
+          echo "FTP_USERNAME = $FTP_USERNAME"
+          echo "FTP_TARGET_DIR = $FTP_TARGET_DIR"
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
 
-      #- run: npm install
-      #- run: npm run prod
-
-      - name: Deploy to InfinityFree via FTP
+      - name: Upload to InfinityFree via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_TARGET_DIR }}
-          local-dir: .  # or 'public' if you want only public folder
-
-      - name: Check secrets presence
-        run: |
-          echo "FTP_SERVER is $FTP_SERVER"
-          echo "FTP_USERNAME is $FTP_USERNAME"
-          echo "FTP_TARGET_DIR is $FTP_TARGET_DIR"
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_TARGET_DIR: ${{ secrets.FTP_TARGET_DIR }}
+          local-dir: .
