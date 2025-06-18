@@ -5,6 +5,8 @@
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Plugins -->
+
+
 <script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
 <!-- <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js') }}"></script> -->
 <script src="{{ asset('assets/vendors/fontawesome/all.min.js') }}"></script>
