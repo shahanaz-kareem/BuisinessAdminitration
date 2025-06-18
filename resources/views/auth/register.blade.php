@@ -1,102 +1,9 @@
 
-<html>
-<head>
+@extends('layouts.app')
 
-<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+@section('content')  
 
-        <!--font-family-->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        
-        <!-- title of site -->
-        <title>Directory Landing Page</title>
-
-        <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="{{asset('user_assets/assets/logo/favicon.png')}}"/>
-       
-        <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/font-awesome.min.css')}}">
-
-        <!--linear icon css-->
-		<link rel="stylesheet" href="{{asset('user_assets/assets/css/linearicons.css')}}">
-
-		<!--animate.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/animate.css')}}">
-
-		<!--flaticon.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/flaticon.css')}}">
-
-		<!--slick.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/slick.css')}}">
-		<link rel="stylesheet" href="{{asset('user_assets/assets/css/slick-theme.css')}}">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/bootstrap.min.css')}}">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="{{asset('user_assets/assets/css/bootsnav.css')}}" >	
-        
-        <!--style.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/style.css')}}">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/responsive.css')}}">
-        
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		
-        <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-
-</head>
-<body>
-
-<style>
-body{
-  
-  justify-content: center;
-  align-items: center;
-
-  background: #23252a;
-  background: url('{{asset('assets/images/bg/backgroundImage.jpg')}}') no-repeat center center fixed;
-    background-size: cover; 
-    /* display: flex; */
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
-.box {
-   
-    height: 528px !important;
-
-}
-.login-form{
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.home-link{
-    color: white!important;
-    float: right;
-    padding: 1%;
-}
-</style>
-<div class="home-link">
-<a href="{{ route('/') }}" style="    color: white;">Home</a>
-</div>
-<div class="login-form">
-
-<div class="box">
-
-        <span class="borderLine"></span>
+<div class="container">
         <form method="POST" action="{{ route('register') }}">
             <input type="hidden" name="user_type" value="3">
         @csrf
@@ -105,6 +12,21 @@ body{
             <label for="">Name</label>
             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
              
+            </div>
+             <div class="inputBox">
+                <label for="cat_id">Category</label>
+                <select name="cat_id" id="cat_id" class="form-control select2" required>
+                    <option value=""></option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('cat_id')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+
             </div>
             <div class="inputBox">
             <label for="">Email</label>
@@ -132,12 +54,45 @@ body{
             
                                   
             </form>
-    </div>
-    </div>
-</body>
-</html>
+ 
+</div>
+<script>
+    $(document).ready(function () {
+       
+        $('form').on('submit', function (e) {
+            e.preventDefault(); 
 
+            // Clear previous errors
+            $('.is-invalid').removeClass('is-invalid');
+            $('.text-danger').remove();
 
+            let formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("register") }}',
+                data: formData,
+                success: function (response) {
+                    // Redirect or show success message
+                    window.location.href = response.redirect || "/";
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        for (let field in errors) {
+                            let input = $('[name="' + field + '"]');
+                            input.addClass('is-invalid');
+                            input.after('<span class="text-danger">' + errors[field][0] + '</span>');
+                        }
+                    } else {
+                        alert('Something went wrong. Please try again.');
+                    }
+                }
+            });
+        });
+    });
+</script>
+@endsection
 
 
 

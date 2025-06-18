@@ -81,5 +81,6 @@ $(document).ready(function() {
                     $(".qty").val(parseInt(now)+1);
                 }
             });
+			 $('.carousel').carousel();
 		});
 </script>

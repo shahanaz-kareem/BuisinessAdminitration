@@ -4,6 +4,7 @@
     <head>
         <!-- meta data -->
         <meta charset="utf-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -56,7 +57,10 @@
         <![endif]-->
         <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
         <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-       
+        <link rel="stylesheet" href="{{asset('assets/vendors/toastify/toastify.css')}}">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="{{asset('user_assets/assets/css/select2.min.css')}}">
     </head>
 	
 <body>
@@ -67,7 +71,7 @@
           
     @include('layouts.user.scripts')
     @auth
-			<div id="sidebar" class="sidebar-overlay">
+			<div id="sidebar" class="sidebar-overlay ">
 				<div class="sidebar-content">
 					<span class="close-btn" id="close-btn">&times;</span>
 					

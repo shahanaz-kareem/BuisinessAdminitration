@@ -167,7 +167,7 @@ class ProductController extends Controller
 
      */
 
-    public function update(Request $request,Product $product): RedirectResponse
+    public function update(Request $request,Product $product)
 
     {
 
@@ -214,12 +214,14 @@ class ProductController extends Controller
 
     }
 
-    public function showProductdetails()
+    public function showProductdetails($id)
     {
 
       
-        return $this->ProductServices->showProductdetails();
+        return $this->ProductServices->showProductdetails($id);
 
 
     }
+
+    
 }

@@ -26,7 +26,9 @@
         <!--Custom JS-->
         <script src="{{asset('user_assets/assets/js/custom.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-
+  <!-- Select2 JS (after jQuery!) -->
+          <script src="{{asset('user_assets/assets/js/select2.min.js')}}"></script>
+        <script src="{{ asset('assets/vendors/toastify/toastify.js') }}"></script>
 
         <script>
             $(document).ready(function() {
@@ -39,6 +41,11 @@
                 // Close sidebar when the close button is clicked
                 $('#close-btn').click(function() {
                     $('#sidebar').removeClass('open'); // Remove the class to hide the sidebar
+                });
+
+                  $('.select2').select2({
+                    placeholder: "-- Select --",
+                    allowClear: true
                 });
             });
 

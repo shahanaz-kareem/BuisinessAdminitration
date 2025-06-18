@@ -43,7 +43,7 @@ class User extends Authenticatable
         'name',
 
         'email',
-
+        'cat_id',
         'password',
         'user_type',
 

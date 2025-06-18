@@ -82,7 +82,7 @@
 			                    <li class="scroll"><a href="#works">how it works</a></li>
 			                    <li class="scroll"><a href="#explore">explore</a></li>
 			                    <li class="scroll"><a href="#reviews">review</a></li>
-			                    <li class="scroll"><a href="#blog">blog</a></li>
+			                    <li class="scroll"><a href="{{route('upload.blogs')}}">Upload blog</a></li>
 			                    <li class="scroll"><a href="#contact">contact</a></li>
 								@auth
 								<li class="scroll"><a href="#contact" id="open-sidebar">My Account</a></li>

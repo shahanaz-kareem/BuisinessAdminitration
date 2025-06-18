@@ -42,6 +42,18 @@
                             <span>Manage Products</span>
                         </a>
                     </li>
+                    <li class="sidebar-item {{ Route::currentRouteName() == 'category.index' ? 'active' : '' }}">
+                        <a href="{{ route('category.index') }}" class="sidebar-link">
+                            <i class="bi bi-file-earmark-plus"></i>
+                            <span>Manage Category</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ Route::currentRouteName() == 'proffesion.index' ? 'active' : '' }}">
+                        <a href="{{ route('proffesion.index') }}" class="sidebar-link">
+                            <i class="bi bi-file-earmark-plus"></i>
+                            <span>Manage Proffession</span>
+                        </a>
+                    </li>
                 </ul>
 
                 </div>

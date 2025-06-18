@@ -44,11 +44,10 @@
                         <textarea name="detail" class="form-control" rows="5" placeholder="Product Details"></textarea>
                     </div>
 
-                    <!-- Cover Image -->
                     <div class="col-md-12 mb-4">
-                        <input type="file" name="image_name" id="image_name" class="form-control">
+                        <input type="file" name="image_name[]" id="images" class="form-control" multiple>
+                        <div id="image-preview" class="mt-3 d-flex flex-wrap gap-3"></div>
                     </div>
-
                     <!-- Submit Button -->
                     <div class="col-md-12 text-center">
                         <button type="submit" class="btn btn-primary" id="product-save">Submit</button>
