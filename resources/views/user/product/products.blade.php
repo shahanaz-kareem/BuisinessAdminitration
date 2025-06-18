@@ -13,7 +13,7 @@
                             <div class="single-explore-img">
                                 @php
                                     $firstImage = $list->images->first();
-                                    $imageSrc = $firstImage ? asset('uploads/products/' . $firstImage->image_name) : asset('uploads/products/default.jpg');
+                                    $imageSrc = $firstImage ? asset('uploads/products/' . $firstImage->image_name) : asset('uploads/default.jpg');
                                 @endphp
                                 <img src="{{ $imageSrc }}" class="d-block w-100" alt="Product Image">
                             </div>

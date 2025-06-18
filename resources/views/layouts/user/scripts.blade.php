@@ -1,31 +1,21 @@
-	<!-- Include all js compiled plugins (below), or include individual files as needed -->
-
-    <script src="{{asset('user_assets/assets/js/jquery.js')}}"></script>
-        
-        <!--modernizr.min.js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		
-		<!--bootstrap.min.js-->
-        <script src="{{asset('user_assets/assets/js/bootstrap.min.js')}}"></script>
-		
-		<!-- bootsnav js -->
-		<script src="{{asset('user_assets/assets/js/bootsnav.js')}}"></script>
-
-        <!--feather.min.js-->
-        <script  src="{{asset('user_assets/assets/js/feather.min.js')}}"></script>
-
-        <!-- counter js -->
-		<script src="{{asset('user_assets/assets/js/jquery.counterup.min.js')}}"></script>
-		<script src="{{asset('user_assets/assets/js/waypoints.min.js')}}"></script>
-
-        <!--slick.min.js-->
-        <script src="{{asset('user_assets/assets/js/slick.min.js')}}"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-		     
-        <!--Custom JS-->
-        <script src="{{asset('user_assets/assets/js/custom.js')}}"></script>
-        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery-migrate-3.0.1.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/popper.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.easing.1.3.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.waypoints.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.stellar.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/aos.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.animateNumber.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/scrollax.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.mb.YTPlayer.min.js')}}"></script>
+    <script src="{{asset('product_asset/js/bootstrap-datepicker.js')}}"></script>
+    <script src="{{asset('product_asset/js/jquery.timepicker.min.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{{asset('product_asset/js/google-map.js')}}"></script>
+    <script src="{{asset('product_asset/js/main.js')}}"></script>
   <!-- Select2 JS (after jQuery!) -->
           <script src="{{asset('user_assets/assets/js/select2.min.js')}}"></script>
         <script src="{{ asset('assets/vendors/toastify/toastify.js') }}"></script>
