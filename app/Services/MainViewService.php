@@ -15,10 +15,14 @@ class MainViewService
     {
         $status = config('default.product_approval');
         $type = config('default.user_type');
-        $products = Product::with('images')->where('approval_status',$status['2'])->get();
-        $users = User::where('id', '!=', auth()->id())->where('user_type', '=', $type['user'])->get();
-
-        return view('user.home',compact('products','users'));
+        $products = Product::with('images', 'user')->where('approval_status', $status['2'])->get();
+        $users = User::with('userdetail', 'usercategory')
+            ->where('id', '!=', auth()->id())
+            ->where('user_type', $type['user'])
+            ->orderBy('created_at', 'desc')  // Latest entries
+            ->limit(6)  // Or ->take(6)
+            ->get();
+        return view('user.home', compact('products', 'users'));
 
     }
 

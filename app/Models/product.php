@@ -40,6 +40,11 @@ class Product extends Model
     {
         return $this->hasMany(Productimage::class, 'product_id', 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     
 
 }

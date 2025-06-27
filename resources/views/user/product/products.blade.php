@@ -1,70 +1,60 @@
-    <!--Homes start -->
-		<section id="explore" class="explore">
-			<div class="container">
-				<div class="section-header">
-					<h2>Homes</h2>
-					<p>Explore New place, food, culture around the world and many more</p>
-				</div><!--/.section-header-->
-				<div class="explore-content">
-					<div class="row">
-                        @foreach($products as $list)
-						<div class="col-md-4 col-sm-6">
-                        <div class="single-explore-item">
-                            <div class="single-explore-img">
-                                @php
-                                    $firstImage = $list->images->first();
-                                    $imageSrc = $firstImage ? asset('uploads/products/' . $firstImage->image_name) : asset('uploads/default.jpg');
+
+	    <section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container-fluid px-4">
+	    		<div class="row d-flex">
+	    			<div class="col-md-6 col-lg-3 d-flex align-items-center ftco-animate">
+	    				<div class="heading-section text-center">
+		    				<h2 class="">Our Tops Projects</h2>
+	              <p>Far far away, behind the word mountains, far from the countries Vokalia </p>
+              </div>
+	    			</div>
+					 @foreach($products as $list)
+					   			@php
+                                   $firstImage = $list->images->first();
+        						   $imageSrc = $firstImage ? asset('uploads/products/' . $firstImage->image_name) : asset('uploads/default.jpg');
                                 @endphp
-                                <img src="{{ $imageSrc }}" class="d-block w-100" alt="Product Image">
-                            </div>
+	    			<div class="col-md-6 col-lg-3 ftco-animate">
+						
+	    				<div class="model-entry">
+			    			<div class="model-img" style="background-image: url('{{ $imageSrc }}');">
+			    				<div class="name text-center">
+			    					<h3><a href="{{ route('product.detail',$list->id) }}">{{ $list->name }}</a></h3>
+			    				</div>
+			    				<div class="text text-center">
+			    					<h3><a href="{{ route('product.detail',$list->id) }}">{{ $list->name }}<br><span>{{ $list->user->name }} </span></a></h3>
+			    					<div class="d-flex models-info">
+			    						<div class="box">
+		                		<p>Height</p>
+		                		<span>185</span>
+		                	</div>
+		                	<div class="box">
+		                		<p>Bust</p>
+		                		<span>79</span>
+		                	</div>
+		                	<div class="box">
+		                		<p>Waist</p>
+		                		<span>40</span>
+		                	</div>
+		                	<div class="box">
+		                		<p>Hips</p>
+		                		<span>87</span>
+		                	</div>
+		                	<div class="box">
+		                		<p>Shoe</p>
+		                		<span>40</span>
+		                	</div>
+			    					</div>
+			    				</div>
+			    			</div>
+		    			</div>
 
-                            <div class="single-explore-txt bg-theme-1">
-                                <h2><a href="#">{{ $list->name }}</a></h2>
-                                <p class="explore-rating-price">
-                                    <span class="explore-rating">5.0</span>
-                                    <a href="#">10 ratings</a>
-                                    <span class="explore-price-box">
-                                        from
-                                        <span class="explore-price">5$-300$</span>
-                                    </span>
-                                    <a href="#">restaurant</a>
-                                </p>
-                                <div class="explore-person">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <div class="explore-person-img">
-                                                <a href="#">
-                                                    <img src="{{asset('assets/images/explore/person.png')}}" alt="explore person">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid ut labore et dolore magna aliqua....</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="explore-open-close-part">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <button class="close-btn" onclick="window.location.href='{{ route('product.detail',$list->id) }}'">close now</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <div class="explore-map-icon">
-                                                <a href="#"><i data-feather="map-pin"></i></a>
-                                                <a href="#"><i data-feather="upload"></i></a>
-                                                <a href="#"><i data-feather="heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                        @endforeach
 					</div>
-				</div>
-			</div><!--/.container-->
-
-		</section><!--/.Homes-->
-		<!--Homes end -->
+		    		 @endforeach
+	    			<div class="col-md-6 col-lg-3 d-flex justify-content-center align-items-center ftco-animate">
+		    			<div class="btn-view">
+		    				<p><a href="model.html" class="btn btn-white py-3 px-5">View more</a></p>
+		    			</div>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </section>

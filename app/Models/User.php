@@ -87,4 +87,13 @@ class User extends Authenticatable
 
     ];
 
+    public function userdetail()
+    {
+        return $this->hasOne(Userdetails::class);
+    }
+      public function usercategory()
+    {
+        return $this->belongsTo(proffesional_category::class,'cat_id','id');
+    }
+
 }

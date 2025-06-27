@@ -34,8 +34,8 @@
                 });
 
                   $('.select2').select2({
-                    placeholder: "-- Select --",
-                    allowClear: true
+                    allowClear: true,
+                     width: '100%'
                 });
             });
 

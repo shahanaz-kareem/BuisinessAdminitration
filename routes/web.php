@@ -11,6 +11,8 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProffesionalCategoryController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 
 
@@ -33,6 +35,9 @@ Auth::routes();
 
 Route::get('/', [MainViewController::class, 'index'])->name('/');
 Route::get('product-detail/{id}', [ProductController::class, 'showProductdetails'])->name('product.detail');
+Route::get('/get-states/{country_id}', [RegisterController::class, 'getStates']);
+Route::get('/get-cities/{state_id}', [RegisterController::class, 'getCities']);
+
 
 Route::get('upload', [UploadController::class, 'index'])->name('upload.blogs');
 Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {

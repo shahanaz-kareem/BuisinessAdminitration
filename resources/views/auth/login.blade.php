@@ -1,123 +1,118 @@
+@extends('layouts.app')
 
-<html>
-<head>
+@section('content')
 
-<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <!--font-family-->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        
-        <!-- title of site -->
-        <title>Directory Landing Page</title>
-
-        <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="{{asset('user_assets/assets/logo/favicon.png')}}"/>
-       
-        <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/font-awesome.min.css')}}">
-
-        <!--linear icon css-->
-		<link rel="stylesheet" href="{{asset('user_assets/assets/css/linearicons.css')}}">
-
-		<!--animate.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/animate.css')}}">
-
-		<!--flaticon.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/flaticon.css')}}">
-
-		<!--slick.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/slick.css')}}">
-		<link rel="stylesheet" href="{{asset('user_assets/assets/css/slick-theme.css')}}">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/bootstrap.min.css')}}">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="{{asset('user_assets/assets/css/bootsnav.css')}}" >	
-        
-        <!--style.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/style.css')}}">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="{{asset('user_assets/assets/css/responsive.css')}}">
-        
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		
-        <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-
-</head>
-<body>
-<style>
-body{
-  
-  justify-content: center;
-  align-items: center;
-
-  background: #23252a;
-  background: url('{{asset('assets/images/bg/backgroundImage.jpg')}}') no-repeat center center fixed;
-    background-size: cover; 
-    /* display: flex; */
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-.login-form{
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.home-link{
-    color: white!important;
-    float: right;
-    padding: 1%;
-}
-
-</style>
-<div class="home-link">
-<a href="{{ route('/') }}"  style="    color: white;">Home</a>
-</div>
-<div class="login-form">
-<div class="box">
-        <span class="borderLine"></span>
-        <form method="POST" action="{{ route('login') }}">
+    <section class="ftco-appointment ftco-section">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 mb-5 heading-section text-center ftco-animate">
+                    <span class="subheading">Stylistic</span>
+                    <h2 class="mb-4">Sign in</h2>
+                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Website:</span> <a href="#">yoursite.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 appointment ftco-animate">
+                    <form id="loginForm" method="POST">
                         @csrf
-            <h2>Sign in</h2>
-            <div class="inputBox">
-            <label for="">Email</label>
-            <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" required >
-             
+
+                        <div class="form-group text-center">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="d-md-flex">
+                                        <div class="form-group">
+                                            <input id="email" type="email" class="form-control" name="email"
+                                                placeholder="Email" required>
+                                            <span class="text-danger error-text email_error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="d-md-flex">
+                                        <div class="form-group">
+                                            <input id="password" type="password" class="form-control" name="password"
+                                                placeholder="Password" required>
+                                            <span class="text-danger error-text password_error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary py-3 px-4">
+                                            Login
+                                        </button>
+                                        <div class="links">
+                                            @if (Route::has('password.request'))
+                                                <a href="{{ route('password.request') }}">Forgot Password</a>
+                                            @endif
+                                            <br>
+                                            <a href="{{ route('register') }}">Signup</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            <div class="inputBox">
-            <label for="">Password</label>
-            <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required >
+        </div>
+    </section>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-                
-                <i></i>
-            </div>
-            <div class="links">
-        
-                @if (Route::has('password.request'))                
-                <a href="{{ route('password.request') }}">Forgot Password</a>
-                @endif
-                <a href="{{ route('register') }}">Signup</a>
-            </div>
-            <input type="submit" id="submit" value="Login">
-        </form>
-    </div>
-    </div>
-</body>
-</html>
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
 
+            $('.error-text').text('');
 
+            let formData = $(this).serialize();
 
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('login') }}",
+                data: formData,
+                success: function (response) {
+                    window.location.href = response.redirect || "/";
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        $.each(errors, function (key, value) {
+                            $('.' + key + '_error').text(value[0]);
+                        });
+                    } else {
+                        alert('Something went wrong.');
+                    }
+                }
+            });
+        });
 
+    </script>
+@endsection
